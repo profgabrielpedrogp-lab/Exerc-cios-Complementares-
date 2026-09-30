@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios Complementares - Diagramas Lógicos | Lidera Concursos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo-lidera {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #f39c12;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #1a1a2e;
+            border-bottom: 3px solid #f39c12;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: #16213e;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .exercise {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid #16213e;
+            border-radius: 4px;
+        }
+
+        .exercise-number {
+            font-weight: bold;
+            color: #f39c12;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .exercise-source {
+            color: #666;
+            font-size: 0.9em;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .answer {
+            background-color: #e8f4f8;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 4px;
+            display: none;
+            border-left: 3px solid #16213e;
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        .btn-answer {
+            background-color: #16213e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.95em;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        .btn-answer:hover {
+            background-color: #f39c12;
+            transition: background-color 0.3s ease;
+        }
+
+        .info-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid #16213e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .example-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .difficulty.facil {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .difficulty.medio {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .difficulty.dificil {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        table th {
+            background-color: #16213e;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .diagram {
+            text-align: center;
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        .highlight {
+            background-color: #fff9e6;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        footer {
+            background-color: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 8px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        @media print {
+            .btn-answer {
+                display: none;
+            }
+            .answer {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-lidera">🛡️ LIDERA CONCURSOS</div>
+            <h1>EXERCÍCIOS COMPLEMENTARES</h1>
+            <p>Diagramas Lógicos e Quantificadores - Parte II</p>
+            <p style="margin-top: 10px; font-size: 0.95em;">Lista Expandida com Exercícios de Concursos Reais</p>
+        </header>
+
+        <div class="section">
+            <h2>📊 Estatísticas da Lista</h2>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">20</div>
+                    <div class="stat-label">Questões</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Fácil</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Médio</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Difícil</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>💡 Como usar esta lista:</strong>
+                <ul>
+                    <li>Comece pelas questões fáceis para fixar conceitos</li>
+                    <li>Tente resolver sem ver as respostas</li>
+                    <li>Use papel para desenhar seus diagramas</li>
+                    <li>Aumente a dificuldade progressivamente</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- EXERCÍCIOS NÍVEL FÁCIL -->
+        <div class="section">
+            <h2>⭐ Nível Fácil</h2>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 01</div>
+                <div class="exercise-source">FUNDATEC 2021 - APOG</div>
+                <p>Considerando que são verdadeiras as seguintes afirmações:</p>
+                <ul>
+                    <li>Existem administradores que são contadores.</li>
+                    <li>Todos contadores são bons em matemática.</li>
+                </ul>
+                <p><strong>É possível concluir que:</strong></p>
+                <p>a) Todos os administradores são bons em matemática.<br>
+                   b) Todos que são bons em matemática são administradores.<br>
+                   c) Nenhum contador é administrador.<br>
+                   d) Existem administradores bons em matemática.<br>
+                   e) Existem contadores que não são bons em matemática.</p>
+                <div class="difficulty facil">FÁCIL</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: D</strong>
+                    <p>Se existem administradores que são contadores, e todos os contadores são bons em matemática, então esses administradores-contadores também são bons em matemática.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 02</div>
+                <div class="exercise-source">FUNDATEC 2022 - SPGG</div>
+                <p>Suponha serem verdadeiras as seguintes afirmações:</p>
+                <ul>
+                    <li>Todo triângulo equilátero é isósceles.</li>
+                    <li>ABC é um triângulo equilátero.</li>
+                </ul>
+                <p><strong>É possível deduzir que:</strong></p>
+                <p>a) ABC é um triângulo isósceles.<br>
+                   b) ABC não é um triângulo isósceles.<br>
+                   c) Todo triângulo isósceles é equilátero.<br>
+                   d) Nenhum triângulo equilátero é isósceles.<br>
+                   e) ABC não é triângulo.</p>
+                <div class="difficulty facil">FÁCIL</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: A</strong>
+                    <p>Aplicação direta de silogismo: Se todo equilátero é isósceles, e ABC é equilátero, então ABC é isósceles.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 03</div>
+                <div class="exercise-source">IBFC 2021 - IAP/PR</div>
+                <p>De acordo com as afirmações abaixo:</p>
+                <ul>
+                    <li>Todo ambientalista é formado.</li>
+                    <li>Alguns formados são supervisores.</li>
+                    <li>Nenhum supervisor é ambientalista.</li>
+                </ul>
+                <p><strong>É correto afirmar que:</strong></p>
+                <p>a) Todo formado é ambientalista.<br>
+                   b) Pode haver ambientalista não formado.<br>
+                   c) Existe ambientalista que é supervisor.<br>
+                   d) Pode haver supervisor que não é formado.<br>
+                   e) Existe supervisor formado e ambientalista.</p>
+                <div class="difficulty facil">FÁCIL</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: D</strong>
+                    <p>Se nenhum supervisor é ambientalista, e não há contradição com "alguns formados são supervisores", então pode haver supervisores que não fazem parte do grupo de formados.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 04</div>
+                <div class="exercise-source">VUNESP 2022 - PCSP</div>
+                <p>Considere as afirmações:</p>
+                <ul>
+                    <li>Todos os alunos da sala são destros.</li>
+                    <li>Alguns alunos da sala são destros.</li>
+                    <li>Nenhum aluno da sala é destro.</li>
+                </ul>
+                <p><strong>Qual diagrama melhor representa cada afirmação?</strong></p>
+                <p>I. Círculo dentro do outro (TODO)<br>
+                   II. Interseção de dois círculos (ALGUM)<br>
+                   III. Círculos separados (NENHUM)</p>
+                <p>a) Apenas I é correto.<br>
+                   b) I e II são corretos.<br>
+                   c) Todos os três são corretos.<br>
+                   d) Nenhum é correto.<br>
+                   e) II e III são corretos.</p>
+                <div class="difficulty facil">FÁCIL</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: C</strong>
+                    <p>Cada tipo de proposição tem sua representação: TODO usa containment, ALGUM usa interseção, NENHUM usa separação.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 05</div>
+                <div class="exercise-source">FCC - Exercício de Fixação</div>
+                <p>Todas as plantas verdes têm clorofila. Algumas plantas que têm clorofila são comestíveis. Logo:</p>
+                <p>a) algumas plantas verdes são comestíveis.<br>
+                   b) algumas plantas verdes não são comestíveis.<br>
+                   c) algumas plantas comestíveis têm clorofila.<br>
+                   d) todas as plantas que têm clorofila são comestíveis.<br>
+                   e) todas as plantas verdes são comestíveis.</p>
+                <div class="difficulty facil">FÁCIL</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: C</strong>
+                    <p>Se algumas plantas com clorofila são comestíveis, e todas as plantas verdes têm clorofila, então existe a possibilidade de que algumas plantas comestíveis tenham clorofila. A resposta é diretamente derivada da segunda premissa.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 06</div>
+                <div class="exercise-source">FCC - Exercício de Fixação</div>
+                <p>Algum A é B. Todo A é C. Logo</p>
+                <p>a) algum D é A.<br>
+                   b) todo B é C.<br>
+                   c) todo C é A.<br>
+                   d) todo B é A.<br>
+                   e) algum B é C.</p>
+                <div class="difficulty facil">FÁCIL</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: E</strong>
+                    <p>Se algum A é B, e todo A é C, então a interseção entre A e B está dentro de C. Logo, algum B é C.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 07</div>
+                <div class="exercise-source">FCC - Exercício de Fixação</div>
+                <p>Todos os macerontes são torminodoros. Alguns macerontes são momorrengos. Logo,</p>
+                <p>a) todos os momorrengos são torminodoros.<br>
+                   b) alguns torminodoros são momorrengos.<br>
+                   c) todos os torminodoros são macerontes.<br>
+                   d) alguns momorrengos são pássaros.<br>
+                   e) todos os momorrengos são macerontes.</p>
+                <div class="difficulty facil">FÁCIL</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: B</strong>
+                    <p>Alguns macerontes são momorrengos, e todos os macerontes são torminodoros. Logo, a parte dos momorrengos que é macerontes também é torminodoros. Portanto, alguns torminodoros são momorrengos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCÍCIOS NÍVEL MÉDIO -->
+        <div class="section">
+            <h2>⭐⭐ Nível Médio</h2>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 08</div>
+                <div class="exercise-source">FGV 2022 - SEFAZ/AM</div>
+                <p>Considere as afirmativas:</p>
+                <ul>
+                    <li>Alguns homens gostam de ler.</li>
+                    <li>Quem gosta de ler vai à livraria.</li>
+                </ul>
+                <p><strong>É correto concluir que:</strong></p>
+                <p>a) Todos os homens vão à livraria.<br>
+                   b) Mulheres não gostam de ler.<br>
+                   c) Quem vai à livraria gosta de ler.<br>
+                   d) Se um homem não vai à livraria, então não gosta de ler.<br>
+                   e) Quem não gosta de ler não vai à livraria.</p>
+                <div class="difficulty medio">MÉDIO</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: D</strong>
+                    <p>Aplicação de contrapositividade: "Quem gosta de ler vai à livraria" significa (gosta → vai). Pela contrapositividade, (¬vai → ¬gosta), que é exatamente a opção D.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 09</div>
+                <div class="exercise-source">FGV 2022 - SEFAZ/AM</div>
+                <p>Considere as seguintes premissas:</p>
+                <ul>
+                    <li>Quem tem azar não sorri.</li>
+                    <li>Quem é maratonista não está doente.</li>
+                    <li>Quem não está doente, sorri.</li>
+                </ul>
+                <p><strong>É correto concluir que:</strong></p>
+                <p>a) Quem não está doente é maratonista.<br>
+                   b) Quem está doente não sorri.<br>
+                   c) Quem não tem azar sorri.<br>
+                   d) Quem é maratonista não tem azar.<br>
+                   e) Quem sorri, não está doente.</p>
+                <div class="difficulty medio">MÉDIO</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: D</strong>
+                    <p>Conectando as proposições em cadeia: Maratonista → ¬Doente → Sorri. E pela contrapositividade da primeira premissa: Sorri → ¬Azar. Logo: Maratonista → ¬Azar.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 10</div>
+                <div class="exercise-source">FCC - Exercício de Fixação</div>
+                <p>Se é verdade que "algum X é Y" e que "nenhum Z é Y", então é necessariamente verdadeiro que:</p>
+                <p>a) algum X não é Z.<br>
+                   b) algum X é Z.<br>
+                   c) nenhum X é Z.<br>
+                   d) algum Z é X.<br>
+                   e) nenhum Z é X.</p>
+                <div class="difficulty medio">MÉDIO</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: A</strong>
+                    <p>Se algum X é Y, então existe pelo menos um elemento em X que é Y. Mas nenhum Z é Y, então esse elemento de X que é Y não pode ser Z. Logo, algum X não é Z.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 11</div>
+                <div class="exercise-source">FCC - Exercício de Fixação</div>
+                <p>Em certo planeta, todos os Aleves são Bleves, todos os Cleves são Bleves, todos os Dleves são Aleves, e todos os Cleves são Dleves. Sobre os habitantes desse planeta, é correto afirmar que</p>
+                <p>a) Todos os Dleves são Bleves e são Cleves.<br>
+                   b) Todos os Bleves são Cleves e são Dleves.<br>
+                   c) Todos os Aleves são Cleves e são Dleves.<br>
+                   d) Todos os Cleves são Aleves e são Bleves.<br>
+                   e) Todos os Aleves são Dleves e alguns Aleves podem não ser Cleves.</p>
+                <div class="difficulty medio">MÉDIO</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: D</strong>
+                    <p>Analisando as relações: Cleves ⊂ Dleves ⊂ Aleves ⊂ Bleves. Logo, todos os Cleves são: Dleves (sim), Aleves (sim, pela transitividade) e Bleves (sim).</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 12</div>
+                <div class="exercise-source">VUNESP 2022 - PCSP</div>
+                <p>Considere o diagrama, em que o conjunto retangular representa os pescadores (P), o conjunto triangular os bombeiros (B) e o conjunto circular os mergulhadores (M).</p>
+                <p>Sabendo que as regiões acinzentadas no diagrama indicam ausência de pessoas na região, é correto afirmar que:</p>
+                <p>a) não existe mergulhador que é bombeiro.<br>
+                   b) a maioria dos mergulhadores não são bombeiros.<br>
+                   c) todo bombeiro é pescador.<br>
+                   d) um bombeiro ou é mergulhador ou é pescador.<br>
+                   e) pelo menos um pescador é bombeiro e não é mergulhador.</p>
+                <div class="difficulty medio">MÉDIO</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: C</strong>
+                    <p>Se analisarmos o diagrama, todos os bombeiros estão dentro do retângulo dos pescadores, o que significa que todo bombeiro é pescador.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 13</div>
+                <div class="exercise-source">VUNESP 2023 - TJ-SP</div>
+                <p>Nesta questão, estão sendo consideradas quatro modalidades esportivas: A, B, C e D. É sabido que:</p>
+                <ul>
+                    <li>Todo praticante de B é praticante de A.</li>
+                    <li>Alguns praticantes de C são praticantes de B.</li>
+                    <li>Alguns praticantes de A são praticantes de D.</li>
+                </ul>
+                <p><strong>É necessariamente verdade que:</strong></p>
+                <p>a) não existe quem pratique apenas B e C.<br>
+                   b) alguns praticantes de B são praticantes de D.<br>
+                   c) não há praticante de B que seja praticante de D.<br>
+                   d) qualquer praticante de A que seja praticante de C é também praticante de B.<br>
+                   e) todo praticante de C é praticante de D.</p>
+                <div class="difficulty medio">MÉDIO</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: A</strong>
+                    <p>Todo B é A, e alguns C são B. Logo, quem pratica B e C está dentro de A. A opção A é a única que pode ser confirmada logicamente pelas premissas.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 14</div>
+                <div class="exercise-source">FGV 2022 - TRT/16ª REGIÃO</div>
+                <p>Considere verdadeira a afirmação: "Todos os corredores são magros".</p>
+                <p>Observe as conclusões:</p>
+                <p>1) Se João é magro, então é corredor.<br>
+                   2) Se João não é corredor, então não é magro.<br>
+                   3) Se João não é magro, então não é corredor.</p>
+                <p><strong>A sequência de verdadeiro (V) ou falso (F) é:</strong></p>
+                <p>a) V, V, V<br>
+                   b) F, V, V<br>
+                   c) F, F, V<br>
+                   d) V, V, F<br>
+                   e) V, F, F</p>
+                <div class="difficulty medio">MÉDIO</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: B (F, V, V)</strong>
+                    <p>1) Magro → Corredor? FALSO (pode ser magro sem ser corredor)<br>
+                       2) ¬Corredor → ¬Magro? VERDADEIRO (contrapositividade)<br>
+                       3) ¬Magro → ¬Corredor? VERDADEIRO (contrapositividade)</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 15</div>
+                <div class="exercise-source">FCC 2017 - DPE/RS</div>
+                <p>Em uma escola há professor de química que é professor de física, mas não todos. Também há professor de matemática que é professor de física, mas não todos. Não há professor de matemática que seja professor de química. Não há professor de física que seja apenas professor de física.</p>
+                <p><strong>Qual das alternativas é necessariamente verdadeira?</strong></p>
+                <p>a) Todos os professores de física são professores de química.<br>
+                   b) Qualquer professor de matemática é professor de química.<br>
+                   c) Os professores de matemática que não são de química são de física.<br>
+                   d) Há professores de química que são de matemática e de física.<br>
+                   e) Qualquer professor de física que é de matemática não é de química.</p>
+                <div class="difficulty medio">MÉDIO</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: C</strong>
+                    <p>Se não há professor de matemática que seja de química, então todo professor de matemática está fora do conjunto de química. E como não há professor de física que seja apenas de física (sempre tem outra disciplina), os professores de matemática devem estar em outra disciplina, que é a física.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 16</div>
+                <div class="exercise-source">FCC - Exercício de Fixação</div>
+                <p>Se é verdade que "algum A é B" e que "todo B é C", então é necessariamente verdadeiro que:</p>
+                <p>a) todo A é C.<br>
+                   b) nenhum A é C.<br>
+                   c) algum A é C.<br>
+                   d) algum A não é C.<br>
+                   e) nenhum C é A.</p>
+                <div class="difficulty medio">MÉDIO</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: C</strong>
+                    <p>Se algum A é B, e todo B é C, então a parte de A que é B também é C. Logo, algum A é C.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCÍCIOS NÍVEL DIFÍCIL -->
+        <div class="section">
+            <h2>⭐⭐⭐ Nível Difícil</h2>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 17</div>
+                <div class="exercise-source">DESAFIO - Análise Complexa</div>
+                <p>Considere as seguintes premissas sobre a fauna de uma ilha:</p>
+                <ul>
+                    <li>Todo animal que voa é vertebrado.</li>
+                    <li>Alguns vertebrados são aquáticos.</li>
+                    <li>Nenhum animal aquático é terrestre.</li>
+                    <li>Alguns animais que voam são aquáticos.</li>
+                </ul>
+                <p><strong>Qual conclusão é necessariamente verdadeira?</strong></p>
+                <p>a) Todos os vertebrados voam.<br>
+                   b) Alguns animais que voam são terrestres.<br>
+                   c) Todo animal aquático é vertebrado.<br>
+                   d) Alguns animais aquáticos voam.<br>
+                   e) Nenhum animal terrestre voa.</p>
+                <div class="difficulty dificil">DIFÍCIL</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: D</strong>
+                    <p>Da premissa 4: "Alguns animais que voam são aquáticos" = alguns voadores são aquáticos. Logo, alguns aquáticos voam (mesma coisa dita de forma inversa).</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 18</div>
+                <div class="exercise-source">DESAFIO - Quantificadores Múltiplos</div>
+                <p>Analise as seguintes proposições:</p>
+                <ul>
+                    <li>Todos os juízes são profissionais qualificados.</li>
+                    <li>Alguns profissionais qualificados não são magistrados.</li>
+                    <li>Todos os magistrados são juízes.</li>
+                    <li>Alguns funcionários públicos são magistrados.</li>
+                </ul>
+                <p><strong>Qual das seguintes proposições é necessariamente verdadeira?</strong></p>
+                <p>a) Alguns juízes não são profissionais qualificados.<br>
+                   b) Alguns funcionários públicos são juízes.<br>
+                   c) Nem todos os juízes são magistrados.<br>
+                   d) Alguns magistrados não são profissionais qualificados.<br>
+                   e) Todos os funcionários públicos são juízes.</p>
+                <div class="difficulty dificil">DIFÍCIL</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: B</strong>
+                    <p>Conectando: Alguns funcionários públicos são magistrados (P4) → Todos magistrados são juízes (P3) → Logo, alguns funcionários públicos são juízes.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 19</div>
+                <div class="exercise-source">DESAFIO - Negações Complexas</div>
+                <p>Se é verdadeiro que "nenhum especialista em IA é adversário da tecnologia", então qual das seguintes proposições é necessariamente falsa?</p>
+                <p>a) Todos os especialistas em IA são favoráveis à tecnologia.<br>
+                   b) Alguns especialistas em IA são adversários da tecnologia.<br>
+                   c) Alguns especialistas em IA não são adversários da tecnologia.<br>
+                   d) Alguns adversários da tecnologia não são especialistas em IA.<br>
+                   e) Nem todo especialista em IA é favorável à tecnologia.</p>
+                <div class="difficulty dificil">DIFÍCIL</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: B</strong>
+                    <p>Se nenhum especialista é adversário, então não existe especialista que seja adversário. A proposição B afirma que "alguns especialistas são adversários", o que contradiz a premissa. Logo, B é necessariamente falsa.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-number">Questão 20</div>
+                <div class="exercise-source">DESAFIO - Silogismo Complexo</div>
+                <p>Considere as seguintes proposições:</p>
+                <ul>
+                    <li>Todos os professores que ensinam lógica são dedicados.</li>
+                    <li>Alguns professores dedicados trabalham em cursinhos.</li>
+                    <li>Nem todos os que trabalham em cursinhos são professores.</li>
+                    <li>Alguns professores que ensinam lógica trabalham em cursinhos.</li>
+                </ul>
+                <p><strong>Qual conclusão é necessariamente verdadeira?</strong></p>
+                <p>a) Todos os professores que ensinam lógica trabalham em cursinhos.<br>
+                   b) Alguns professores que ensinam lógica são dedicados e trabalham em cursinhos.<br>
+                   c) Nenhum professor que ensina lógica trabalha em cursinho.<br>
+                   d) Todos que trabalham em cursinho ensinam lógica.<br>
+                   e) Alguns cursinhos não têm professores que ensinam lógica.</p>
+                <div class="difficulty dificil">DIFÍCIL</div>
+                <button class="btn-answer" onclick="toggleAnswer(this)">Mostrar Resposta</button>
+                <div class="answer">
+                    <strong>Resposta: B</strong>
+                    <p>Da P1: Todos os que ensinam lógica são dedicados. Da P4: Alguns que ensinam lógica trabalham em cursinhos. Logo, alguns que ensinam lógica são dedicados (P1) E trabalham em cursinhos (P4).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- GABARITO COMPLETO -->
+        <div class="section">
+            <h2>✅ Gabarito Completo</h2>
+
+            <table>
+                <tr>
+                    <th>Questão</th>
+                    <th>Resposta</th>
+                    <th>Dificuldade</th>
+                    <th>Tópico Principal</th>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>D</td>
+                    <td>Fácil</td>
+                    <td>Interseção de Conjuntos</td>
+                </tr>
+                <tr>
+                    <td>02</td>
+                    <td>A</td>
+                    <td>Fácil</td>
+                    <td>Silogismo Simples</td>
+                </tr>
+                <tr>
+                    <td>03</td>
+                    <td>D</td>
+                    <td>Fácil</td>
+                    <td>Diagramas com Três Conjuntos</td>
+                </tr>
+                <tr>
+                    <td>04</td>
+                    <td>C</td>
+                    <td>Fácil</td>
+                    <td>Representação de Proposições</td>
+                </tr>
+                <tr>
+                    <td>05</td>
+                    <td>C</td>
+                    <td>Fácil</td>
+                    <td>Quantificadores</td>
+                </tr>
+                <tr>
+                    <td>06</td>
+                    <td>E</td>
+                    <td>Fácil</td>
+                    <td>Silogismo com Quantificadores</td>
+                </tr>
+                <tr>
+                    <td>07</td>
+                    <td>B</td>
+                    <td>Fácil</td>
+                    <td>Cadeia de Relações</td>
+                </tr>
+                <tr>
+                    <td>08</td>
+                    <td>D</td>
+                    <td>Médio</td>
+                    <td>Contrapositividade</td>
+                </tr>
+                <tr>
+                    <td>09</td>
+                    <td>D</td>
+                    <td>Médio</td>
+                    <td>Cadeia de Implicações</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>A</td>
+                    <td>Médio</td>
+                    <td>Algum e Nenhum</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>D</td>
+                    <td>Médio</td>
+                    <td>Transitividade em Diagramas</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>C</td>
+                    <td>Médio</td>
+                    <td>Leitura de Diagramas</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>A</td>
+                    <td>Médio</td>
+                    <td>Quatro Conjuntos</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>B</td>
+                    <td>Médio</td>
+                    <td>Contrapositividade Tripla</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>C</td>
+                    <td>Médio</td>
+                    <td>Análise Complexa</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>C</td>
+                    <td>Médio</td>
+                    <td>Algum e Todo</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>D</td>
+                    <td>Difícil</td>
+                    <td>Negações em Cadeia</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>B</td>
+                    <td>Difícil</td>
+                    <td>Silogismo Múltiplo</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>B</td>
+                    <td>Difícil</td>
+                    <td>Negação de Proposição</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>B</td>
+                    <td>Difícil</td>
+                    <td>Silogismo Complexo</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- DICAS FINAIS -->
+        <div class="section">
+            <h2>💡 Dicas Finais para Dominar Diagramas Lógicos</h2>
+
+            <div class="info-box">
+                <h3>✏️ Ao Resolver as Questões:</h3>
+                <ol>
+                    <li><strong>Leia com atenção:</strong> Identifique TODO, ALGUM, NENHUM, ALGUNS</li>
+                    <li><strong>Desenhe seus diagramas:</strong> Usar papel é fundamental</li>
+                    <li><strong>Verifique cada opção:</strong> Procure por necessidade, não por possibilidade</li>
+                    <li><strong>Use contrapositividade:</strong> Se → Então pode virar ¬ → ¬</li>
+                    <li><strong>Respeite a lógica:</strong> Não faça suposições além das premissas</li>
+                </ol>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Armadilhas Comuns:</h3>
+                <ul>
+                    <li>❌ Confundir "algum é B" com "algum B é A"</li>
+                    <li>❌ Assumir "nenhum" quando não está explícito</li>
+                    <li>❌ Fazer inversões ilógicas (Se todo A é B, NÃO significa que todo B é A)</li>
+                    <li>❌ Esquecer da contrapositividade (¬q → ¬p é equivalente a p → q)</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h3>🎯 Próximos Passos:</h3>
+                <ul>
+                    <li>✓ Revise a aula teórica (aula_diagramas_logicos.html)</li>
+                    <li>✓ Resolva os exercícios fácil primeiro</li>
+                    <li>✓ Depois, aumente para médio</li>
+                    <li>✓ Finalize com os difíceis</li>
+                    <li>✓ Refaça as questões que errou</li>
+                    <li>✓ Pratique com provas anteriores de concursos</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <h3>🛡️ LIDERA CONCURSOS</h3>
+            <p><strong>Preparo • Disciplina • Aprovação</strong></p>
+            <p>Exercícios Complementares - Diagramas Lógicos</p>
+            <p style="margin-top: 15px; font-size: 0.9em;">Professor Gabriel Pedro<br>
+            © 2024 - Todos os direitos reservados</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleAnswer(button) {
+            const answer = button.nextElementSibling;
+            answer.classList.toggle('show');
+            button.textContent = answer.classList.contains('show') ? 'Ocultar Resposta' : 'Mostrar Resposta';
+            button.style.backgroundColor = answer.classList.contains('show') ? '#4caf50' : '#16213e';
+        }
+
+        // Sugestão de modo escuro via preferência do sistema
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.style.backgroundColor = '#1a1a2e';
+            document.body.style.color = '#e0e0e0';
+        }
+    </script>
+</body>
+</html>
